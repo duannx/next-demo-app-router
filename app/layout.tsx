@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Revalia } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,6 +39,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Script strategy="afterInteractive" id="1">
+        {`performance.mark('script afterInteractive added')`}
+      </Script>
+      <Script strategy="beforeInteractive" id="2">
+        {`performance.mark('script beforeInteractive added')`}
+      </Script>
+      <Script strategy="lazyOnload" id="3">
+        {`performance.mark('script lazyOnload added')`}
+      </Script>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${revaliaFont.className} ${metric.variable}`}
       >
