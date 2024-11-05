@@ -1,10 +1,27 @@
+"use client"
+
 import Image from "next/image";
 import styles from "./page.module.css";
+import dynamic from "next/dynamic";
+import { useState } from "react";
+
+const LazyComponent = dynamic(() => import("@/components/LazyComponent"));
+const LazyOnClickComponent = dynamic(
+  () => import("@/components/LazyOnClickComponent")
+);
 
 export default function Home() {
+  const [isShow, setIsShow] = useState(false);
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        <LazyComponent></LazyComponent>
+        <button onClick={() => setIsShow(true)}>
+          {" "}
+          Show Lazy loaded component
+        </button>
+        {isShow && <LazyOnClickComponent></LazyOnClickComponent>}
         <Image
           className={styles.logo}
           src="/next.svg"
