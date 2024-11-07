@@ -51,7 +51,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${revaliaFont.className} ${metric.variable}`}
+        className={`${geistSans.className} contaier`}
       >
         {children}
       </body>

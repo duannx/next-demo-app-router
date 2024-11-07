@@ -40,3 +40,9 @@ a {
     color-scheme: dark;
   }
 }
+
+.contaier {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 5em 0;
+}
