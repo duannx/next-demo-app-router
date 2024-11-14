@@ -1,0 +1,10 @@
+.nav {
+    display: flex;
+    list-style: none;
+    gap: 2em;
+    margin-bottom: 2em;
+
+    &__item {
+        text-decoration: underline;
+    }
+}

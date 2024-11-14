@@ -1,22 +1,7 @@
 import Counter from "@/components/Counter";
+import { fetchFast, fetchMedium, fetchSlow } from "@/utils/fetch";
 import { connection } from "next/server";
 import { Suspense } from "react";
-
-// API Fetch functions
-const fetchFast = async () => {
-  const res = await fetch("http://localhost:3001/api/fast");
-  return res.json();
-};
-
-const fetchMedium = async () => {
-  const res = await fetch("http://localhost:3001/api/medium");
-  return res.json();
-};
-
-const fetchSlow = async () => {
-  const res = await fetch("http://localhost:3001/api/slow");
-  return res.json();
-};
 
 // Skeleton Loader
 const Skeleton = () => (
@@ -30,7 +15,7 @@ const Section = async ({
   fetchData,
 }: {
   title: string;
-  fetchData: () => Promise<boolean>;
+  fetchData: () => Promise<unknown>;
 }) => {
   await fetchData();
 

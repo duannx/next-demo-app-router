@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Revalia } from "next/font/google";
 import "./globals.css";
+import styles from "./layout.module.scss";
 import Script from "next/script";
+import Header from "@/components/Header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -51,9 +53,12 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${geistSans.className} contaier`}
+        className={`${geistSans.variable} ${geistMono.variable} ${revaliaFont.className} ${metric.variable}`}
       >
-        {children}
+        <main className={styles.container}>
+          <Header></Header>
+          {children}
+        </main>
       </body>
     </html>
   );
