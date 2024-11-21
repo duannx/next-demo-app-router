@@ -1,9 +1,11 @@
 // app/blog/[id]/page.tsx
 
-import { FC } from "react";
+import { FC, Suspense } from "react";
 import TimeAgo from "./TimeAgo";
 import BlogContent from "./BlogContent";
 import Collapsible from "./Collapsible";
+import { Comments } from "./Comments";
+import Form from "./Form";
 
 interface BlogPost {
   title: string;
@@ -33,6 +35,10 @@ const BlogPage: FC<BlogPageProps> = async ({ params }) => {
       <Collapsible title="Blog content">
         <BlogContent content={blogPost.content}></BlogContent>
       </Collapsible>
+      <Suspense fallback="Loading comments">
+        <Comments postId={id}></Comments>
+      </Suspense>
+      <Form postId={id}></Form>
     </div>
   );
 };

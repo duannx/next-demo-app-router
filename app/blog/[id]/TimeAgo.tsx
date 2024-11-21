@@ -12,5 +12,5 @@ export default function TimeAgo({ time }: { time: number }) {
     }, 1000);
     return () => clearInterval(interval);
   });
-  return <h2>{timeAgo}</h2>;
+  return <h3>{timeAgo}</h3>;
 }
