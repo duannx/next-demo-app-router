@@ -43,6 +43,9 @@ export default async function StreamingPage() {
       <Suspense fallback={<Skeleton />}>
         <Section title="Medium API" fetchData={fetchMedium} />
       </Suspense>
+      <Suspense fallback={<Skeleton />}>
+        <Section title="Slow API" fetchData={fetchSlow} />
+      </Suspense>
     </div>
   );
 }

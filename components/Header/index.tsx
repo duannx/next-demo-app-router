@@ -23,6 +23,10 @@ export default function Header() {
       href: "/streaming",
       title: "Streaming",
     },
+    {
+      href: "/santilizer",
+      title: "Santilizer",
+    },
   ];
   return (
     <nav>

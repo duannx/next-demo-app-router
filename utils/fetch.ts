@@ -8,16 +8,16 @@ export function delay(time: number) {
 
 // API Fetch functions
 export const fetchFast = async () => {
-  await delay(1000);
+  await fetch('http://localhost:3001/api/fast')
   return "Data fetch fast";
 };
 
 export const fetchMedium = async () => {
-  await delay(2000);
+  await fetch('http://localhost:3001/api/medium')
   return "Data fetch medium";
 };
 
 export const fetchSlow = async () => {
-  await delay(5000);
+  await fetch('http://localhost:3001/api/slow')
   return "Data fetch slow";
 };

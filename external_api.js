@@ -18,18 +18,21 @@ app.get('/api/blog/:id', (req, res) => {
 
 // Fast API - 1 second delay
 app.get('/api/fast', async (req, res) => {
+  console.log('responding for /api/fast')
   await delayResponse(1000);  // 1 second delay
   res.json(true);
 });
 
 // Medium API - 3 seconds delay
 app.get('/api/medium', async (req, res) => {
+  console.log('responding for /api/medium')
   await delayResponse(3000);  // 3 seconds delay
   res.json(true);
 });
 
 // Slow API - 5 seconds delay
 app.get('/api/slow', async (req, res) => {
+  console.log('responding for /api/slow')
   await delayResponse(5000);  // 5 seconds delay
   res.json(true);
 });

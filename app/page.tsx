@@ -9,7 +9,10 @@ import WashingMachingImage from "@/assets/images/PSEEWM210PA0004D.avif";
 
 const LazyComponent = dynamic(() => import("@/components/LazyComponent"));
 const LazyOnClickComponent = dynamic(
-  () => import("@/components/LazyOnClickComponent")
+  () => import("@/components/LazyOnClickComponent"),
+  {
+    loading: () => <p>loading1</p>,
+  }
 );
 
 export default function Home() {
@@ -24,7 +27,9 @@ export default function Home() {
             {" "}
             Show Lazy loaded component
           </button>
-          {isShow && <LazyOnClickComponent></LazyOnClickComponent>}
+          {isShow && (
+            <LazyOnClickComponent></LazyOnClickComponent>
+          )}
           <Image
             className={styles.logo}
             src="/next.svg"
@@ -69,19 +74,41 @@ export default function Home() {
       </div>
       <div className={styles.grid}>
         <div className={styles.big_image}>
-          <Image alt="Big Image" src={WashingMachingImage} sizes="75vw" placeholder="blur"></Image>
+          <Image
+            alt="Big Image"
+            src={WashingMachingImage}
+            sizes="75vw"
+            placeholder="blur"
+          ></Image>
         </div>
         <div className={styles.small_image}>
-          <Image alt="Big Image" src={WashingMachingImage} sizes="25vw" placeholder="blur"></Image>
+          <Image
+            alt="Big Image"
+            src={WashingMachingImage}
+            sizes="25vw"
+            placeholder="blur"
+          ></Image>
         </div>
       </div>
 
       <div className={styles.grid}>
         <div className={styles.big_image}>
-          <Image alt="Big Image" src="https://www.electrolux.it/services/eml/asset/597e9c7e-5aca-4693-aca5-9ad0927007ea/E4RM3Q/PSEEOV230PA0001L/WS_PN/PSEEOV230PA0001L.png" width={500} height={500} sizes="75vw"></Image>
+          <Image
+            alt="Big Image"
+            src="https://www.electrolux.it/services/eml/asset/597e9c7e-5aca-4693-aca5-9ad0927007ea/E4RM3Q/PSEEOV230PA0001L/WS_PN/PSEEOV230PA0001L.png"
+            width={500}
+            height={500}
+            sizes="75vw"
+          ></Image>
         </div>
         <div className={styles.small_image}>
-          <Image alt="Big Image" src="https://www.electrolux.it/services/eml/asset/597e9c7e-5aca-4693-aca5-9ad0927007ea/E4RM3Q/PSEEOV230PA0001L/WS_PN/PSEEOV230PA0001L.png" width={500} height={500} sizes="25vw"></Image>
+          <Image
+            alt="Big Image"
+            src="https://www.electrolux.it/services/eml/asset/597e9c7e-5aca-4693-aca5-9ad0927007ea/E4RM3Q/PSEEOV230PA0001L/WS_PN/PSEEOV230PA0001L.png"
+            width={500}
+            height={500}
+            sizes="25vw"
+          ></Image>
         </div>
       </div>
     </div>
