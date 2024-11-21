@@ -1,6 +1,9 @@
 // app/blog/[id]/page.tsx
 
 import { FC } from "react";
+import TimeAgo from "./TimeAgo";
+import BlogContent from "./BlogContent";
+import Collapsible from "./Collapsible";
 
 interface BlogPost {
   title: string;
@@ -23,8 +26,13 @@ const BlogPage: FC<BlogPageProps> = async ({ params }) => {
 
   return (
     <div>
-      <h1>{blogPost.title} - {new Date().toLocaleString()}</h1>
-      <p>{blogPost.content}</p>
+      <h1>
+        {blogPost.title} - {new Date().toLocaleString()}
+      </h1>
+      <TimeAgo time={Date.now()}></TimeAgo>
+      <Collapsible title="Blog content">
+        <BlogContent content={blogPost.content}></BlogContent>
+      </Collapsible>
     </div>
   );
 };
