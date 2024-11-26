@@ -21,9 +21,13 @@ interface BlogPageProps {
 const BlogPage: FC<BlogPageProps> = async ({ params }) => {
   const { id } = await params;
   console.log("Rendering Blog Page ID", id);
-
   // Fetch data from the API route
-  const res = await fetch(`http://localhost:3001/api/blog/${id}`);
+  const res = await fetch(`http://localhost:3001/api/blog/${id}`, {
+    next: {
+      revalidate: parseInt(id) * 30,
+      tags: ["blog"],
+    },
+  });
   const blogPost: BlogPost = await res.json();
 
   return (
@@ -35,7 +39,7 @@ const BlogPage: FC<BlogPageProps> = async ({ params }) => {
       <Collapsible title="Blog content">
         <BlogContent content={blogPost.content}></BlogContent>
       </Collapsible>
-      <Suspense fallback="Loading comments">
+      <Suspense fallback={Loading("comment")}>
         <Comments postId={id}></Comments>
       </Suspense>
       <Form postId={id}></Form>
@@ -66,3 +70,15 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 export const revalidate = 60; // Set revalidation to 60 seconds
 
 export default BlogPage;
+
+function Loading(text: string) {
+  return (
+    <div
+      style={{
+        padding: "2em",
+      }}
+    >
+      Loading {text}...
+    </div>
+  );
+}

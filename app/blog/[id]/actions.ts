@@ -1,6 +1,6 @@
 "use server";
 import db from "@/app/lib/db";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function addComment(prevState: string, formData: FormData) {
   const { postId, content } = {
@@ -10,6 +10,7 @@ export async function addComment(prevState: string, formData: FormData) {
   if (!postId || !content) return "error";
   await db.insertComment(postId, content);
   revalidatePath(`/blog/${postId}`)
+  // revalidateTag('blog')
 
   return "success";
 }

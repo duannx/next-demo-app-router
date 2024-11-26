@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 export default function Collapsible({ title, children }: { title: string; children: React.ReactNode }) {
     const [isOpen, setIsOpen] = useState(false);
-    console.log('Children of Collapsible', children)
 
     return (
         <div style={{

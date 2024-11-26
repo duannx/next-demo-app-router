@@ -1,44 +1,39 @@
+import { delay } from "@/utils/fetch";
+
 export interface Comment {
-    created_at: number,
-    content: string,
+  created_at: number;
+  content: string;
 }
 
 export interface PostComment {
-    postId: string,
-    comments: Comment[]
+  postId: string;
+  comments: Comment[];
 }
 
 export interface DB {
-    postComments: PostComment[],
-    getComments: (postId: string) => Promise<Comment[] | undefined>,
-    insertComment: (postId: string, content: string) => Promise<boolean>
+  getComments: (postId: string) => Promise<Comment[] | undefined>;
+  insertComment: (postId: string, content: string) => Promise<boolean>;
 }
 
 const db: DB = {
-    postComments: [],
-    async getComments(postId: string) {
-        return this.postComments.find(postComment => postComment.postId === postId)?.comments
-    },
-    async insertComment(postId: string, content: string) {
-        const comment: Comment =  {
-            created_at: Date.now(),
-            content
-        }
-        const index = this.postComments.findIndex(postComment => postComment.postId === postId)
-        if(index === -1) {
-            const postComment: PostComment = {
-                postId,
-                comments: [
-                    comment
-                ]
-            }
-            this.postComments.push(postComment)
-            return true
-        }
-        const postComment = this.postComments[index]
-        postComment.comments.push(comment)
-        return true
-    }
-}
+  async getComments(postId: string) {
+    const response = await (
+      await fetch(`http://localhost:3001/db/get-comment?id=${postId}`)
+    ).json();
+    return response.comments;
+  },
 
-export default db
+  async insertComment(postId: string, content: string) {
+    console.log("inserting comment", {
+      postId,
+    });
+    await (
+      await fetch(
+        `http://localhost:3001/db/add-comment?id=${postId}&content=${content}`
+      )
+    ).json();
+    return true;
+  },
+};
+
+export default db;
